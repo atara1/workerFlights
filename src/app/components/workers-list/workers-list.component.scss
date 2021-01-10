@@ -1,12 +1,13 @@
-.list-group { 
-    width: 20%;
-}
-
+$full-screen: 100%;
 
 
 .header-list{
     text-align: center;
     font-size: larger;
-    background-color: aqua;
-    height: 5rem;
+}
+
+
+.scroll{  
+    height: $full-screen;
+    overflow-y: auto;
 }

@@ -1,33 +1,25 @@
+<div >
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let column of workerColumns"> {{column}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let worker of workerData | slice: (page-1)*pageSize : (page-1)*pageSize+pageSize">
 
-<table class="table table-striped table-presention">
-  <thead>
-  <tr>
-      <th scope="col" *ngFor="let column of workerColumns"> {{column}}</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let worker of workerData">
-   
-    <td>{{ worker.num }}</td>
-    <td>{{ worker.from }}</td>
-    <td>{{ worker.from_date }}</td>
-    <td>{{ worker.to }}</td>
-    <td>{{ worker.to_date }}</td>
-  
-  </tr>
-  </tbody>
-</table>
+        <td>{{ worker.num }}</td>
+        <td>{{ worker.from }}</td>
+        <td>{{ worker.from_date }}</td>
+        <td>{{ worker.to }}</td>
+        <td>{{ worker.to_date }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-/<!--<div class="d-flex justify-content-between p-2">
-   <ngb-pagination [collectionSize]="collectionSize" 
-  [(page)]="page" [pageSize]="pageSize" 
-  (pageChange)="refreshCountries()">
-  </ngb-pagination>
+  <div class="d-flex justify-content-between p-2 position-pagination">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+    </ngb-pagination>
+  </div>
 
-  <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" 
-    (ngModelChange)="refreshCountries()">
-    <option [ngValue]="2">2 items per page</option>
-    <option [ngValue]="4">4 items per page</option>
-    <option [ngValue]="6">6 items per page</option>
-  </select>
-</div> -->
+</div>

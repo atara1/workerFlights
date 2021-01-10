@@ -9,10 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TableComponent implements OnInit {
   @Input() workerColumns: string[];
   @Input() workerData: WorkerInformation[];
+  page = 1;
+  pageSize = 10;
+  collectionSize: number;
 
+  constructor(){
+  }
   ngOnInit(): void {
-    // console.log(this.workerColumns);
-    // console.log(this.workerData);
+    this.collectionSize = this.workerData.length;
   }
 
 }

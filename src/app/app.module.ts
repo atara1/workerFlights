@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { usersSelectedWorkerReducer } from './store/reducers/usersSelectedWorker.reducer';
 import { WorkerFlightsComponent } from './components/worker-flights/worker-flights.component';
 import { TableComponent } from './components/table/table.component';
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TableComponent } from './components/table/table.component';
     StoreModule.forRoot({
       usersSelectedWorker: usersSelectedWorkerReducer,
     }),
+    NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
