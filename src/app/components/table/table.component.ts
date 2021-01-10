@@ -11,8 +11,8 @@ export class TableComponent implements OnInit {
   @Input() workerData: WorkerInformation[];
 
   ngOnInit(): void {
-    console.log(this.workerColumns);
-    console.log(this.workerData);
+    // console.log(this.workerColumns);
+    // console.log(this.workerData);
   }
 
 }

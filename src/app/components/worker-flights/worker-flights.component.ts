@@ -14,7 +14,7 @@ import { skip } from 'rxjs/operators';
 })
 export class WorkerFlightsComponent implements OnInit, OnDestroy {
   usersSelectedWorker$: Observable<WorkerInfo>;
-  private subscriptions: Subscription;
+  private subscriptions: Subscription[] = [];
   workerColumns: string[] = ['Flight Number', 'Origin', 'Origin Date', 'Destination', 'Destination Date'];
   workerData: WorkerInformation[] = [];
   constructor(private store: Store<AppState>, private workersService: WorkersService) {
@@ -23,20 +23,20 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.subscriptions = this.usersSelectedWorker$.pipe(skip(1)).subscribe(data => {
+    this.subscriptions.push(this.usersSelectedWorker$.pipe(skip(1)).subscribe(data => {
       this.getWorkerData(data.id);
-    });
+    }));
   }
 
   private getWorkerData(numberId: number): void {
-    this.workersService.getWorkerInformation(numberId).subscribe(data => {
+    this.subscriptions.push( this.workersService.getWorkerInformation(numberId).subscribe(data => {
       this.workerData = data;
-    });
+    }));
   }
 
 
   @HostListener('window:unload', ['$event'])
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }

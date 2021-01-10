@@ -1,9 +1,9 @@
 import { WorkersService } from './../../services/workers.service';
 import { WorkerInfo } from './../../../assets/workersTypes';
 import { AppState } from './../../store/AppState';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import * as usersSelectedWorker from '../../store/actions/usersSelectedWorker.action';
 
 @Component({
@@ -11,17 +11,17 @@ import * as usersSelectedWorker from '../../store/actions/usersSelectedWorker.ac
   templateUrl: './workers-list.component.html',
   styleUrls: ['./workers-list.component.scss']
 })
-export class WorkersListComponent implements OnInit {
+export class WorkersListComponent implements OnInit, OnDestroy {
 
   workerList: WorkerInfo[];
   usersSelectedWorker$: Observable<WorkerInfo>;
-
+  private subscriptions: Subscription;
   constructor(private workersService: WorkersService, private store: Store<AppState>) {
     this.usersSelectedWorker$ = store.pipe(select('usersSelectedWorker'));
   }
 
   ngOnInit(): void {
-    this.workersService.getWorkersList().subscribe(list => {
+   this.subscriptions = this.workersService.getWorkersList().subscribe(list => {
       this.workerList = list;
     });
   }
@@ -33,4 +33,8 @@ export class WorkersListComponent implements OnInit {
     }
   }
 
+  @HostListener('window:unload', ['$event'])
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 }

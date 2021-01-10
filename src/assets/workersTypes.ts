@@ -3,8 +3,6 @@ export type WorkerInfo = {
     name: string
 };
 
-
-
 export interface WorkerInformation {
 num: string;
 from: string;
