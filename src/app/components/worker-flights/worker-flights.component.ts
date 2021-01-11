@@ -16,7 +16,7 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   usersSelectedWorker$: Observable<WorkerInfo>;
   private subscriptions: Subscription[] = [];
   flightsSelected$: Observable<WorkerInformation>;
-  workerData: WorkerInformation[] = [];
+  workerFlightsData: WorkerInformation[] = [];
   workerColumns: WorkerColumns[] = [
     { headerName: 'Flight Number', field: 'num' },
     { headerName: 'Origin', field: 'from' },
@@ -38,8 +38,8 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   private getWorkerData(numberId: number): void {
     this.subscriptions.push(this.workersService.getWorkerInformation(numberId)
       .subscribe(data => {
-        this.workerData = data;
-        this.store.dispatch(flights.UpdateFlightInformation(this.workerData[0])); // default will be the first row of the table
+        this.workerFlightsData = data;
+        this.store.dispatch(flights.UpdateFlightInformation(this.workerFlightsData[0])); // default will be the first row of the table
       }, (error) => {
         console.log('error occure: ', error);
       }));
