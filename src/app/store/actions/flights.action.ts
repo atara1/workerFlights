@@ -1,4 +1,4 @@
-import { FlightInformation, WorkerInformation } from './../../../assets/workersTypes';
+import { WorkerInformation } from './../../../assets/workersTypes';
 import { createAction, props } from '@ngrx/store';
 
 

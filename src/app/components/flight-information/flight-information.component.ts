@@ -10,8 +10,8 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./flight-information.component.scss']
 })
 export class FlightInformationComponent implements OnInit, OnDestroy {
-  flightsSelected$: Observable<WorkerInformation>;
-  flightInformation: FlightInformation;
+  public flightsSelected$: Observable<WorkerInformation>;
+  public flightInformation: FlightInformation;
   private subscriptions: Subscription;
 
   constructor(private store: Store<AppState>) {

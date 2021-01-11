@@ -12,11 +12,9 @@ import * as usersSelectedWorker from '../../store/actions/usersSelectedWorker.ac
   styleUrls: ['./workers-list.component.scss']
 })
 export class WorkersListComponent implements OnInit, OnDestroy {
-  workerList: WorkerInfo[];
-  usersSelectedWorker$: Observable<WorkerInfo>;
+  public workerList: WorkerInfo[];
   private subscriptions: Subscription;
   constructor(private workersService: WorkersService, private store: Store<AppState>) {
-    this.usersSelectedWorker$ = store.pipe(select('usersSelectedWorker'));
   }
 
   ngOnInit(): void {

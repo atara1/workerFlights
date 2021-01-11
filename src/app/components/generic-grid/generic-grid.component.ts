@@ -13,8 +13,8 @@ import * as flights from '../../store/actions/flights.action';
 export class GenericGridComponent {
   @Input() workerColumns: string[];
   @Input() workerData: WorkerInformation[];
-  flightsSelected$: Observable<WorkerInformation>;
-  gridOptions = {
+  private flightsSelected$: Observable<WorkerInformation>;
+  public gridOptions = {
     defaultColDef: {
       editable: true,
       enableRowGroup: true,

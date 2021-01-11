@@ -13,11 +13,10 @@ import * as flights from '../../store/actions/flights.action';
   styleUrls: ['./worker-flights.component.scss']
 })
 export class WorkerFlightsComponent implements OnInit, OnDestroy {
-  usersSelectedWorker$: Observable<WorkerInfo>;
+  private usersSelectedWorker$: Observable<WorkerInfo>;
   private subscriptions: Subscription[] = [];
-  flightsSelected$: Observable<WorkerInformation>;
-  workerFlightsData: WorkerInformation[] = [];
-  workerColumns: WorkerColumns[] = [
+  public workerFlightsData: WorkerInformation[] = [];
+  public workerColumns: WorkerColumns[] = [
     { headerName: 'Flight Number', field: 'num' },
     { headerName: 'Origin', field: 'from' },
     { headerName: 'Origin Date', field: 'from_date' },
@@ -26,7 +25,6 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   ];
   constructor(private store: Store<AppState>, private workersService: WorkersService) {
     this.usersSelectedWorker$ = store.pipe(select('usersSelectedWorker'));
-    this.flightsSelected$ = store.pipe(select('flights'));
   }
 
   ngOnInit(): void {
