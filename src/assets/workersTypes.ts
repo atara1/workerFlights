@@ -14,3 +14,10 @@ duration: number;
 from_gate: number;
 to_gate: number;
 }
+
+export interface FlightInformation{
+    duration: number;
+    num: string;
+    from_gate: number;
+    to_gate: number;
+}

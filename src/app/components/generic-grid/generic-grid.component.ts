@@ -1,5 +1,9 @@
-import { WorkerInformation } from './../../../assets/workersTypes';
+import { Observable } from 'rxjs';
+import { AppState } from './../../store/AppState';
+import { FlightInformation, WorkerInformation } from './../../../assets/workersTypes';
 import { Component, Input, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import * as flights from '../../store/actions/flights.action';
 
 @Component({
   selector: 'app-generic-grid',
@@ -9,6 +13,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GenericGridComponent implements OnInit {
   @Input() workerColumns: string[];
   @Input() workerData: WorkerInformation[];
+  flightsSelected$: Observable<WorkerInformation>;
    gridOptions = {
     defaultColDef: {
       editable: true,
@@ -32,14 +37,19 @@ export class GenericGridComponent implements OnInit {
     pagination: true,
   };
 
-  constructor() { }
+  constructor(private store: Store<AppState>) {
+    this.flightsSelected$ = store.pipe(select('flights'));
+
+   }
 
   ngOnInit(): void {
   }
 
   public getSelectedRowData(selectedFlight: WorkerInformation): void {
     console.log(selectedFlight);
-  
+    if (!!selectedFlight) {
+      this.store.dispatch(flights.UpdateFlightInformation(selectedFlight));
+    }
   }
 
 }

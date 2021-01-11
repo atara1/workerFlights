@@ -27,7 +27,7 @@ export class WorkersListComponent implements OnInit, OnDestroy {
   }
 
   selectedWorker(workerSelected: WorkerInfo): void {
-    console.log(workerSelected);
+   // console.log(workerSelected);
     if (!!workerSelected) {
       this.store.dispatch(usersSelectedWorker.SelectedWorker(workerSelected));
     }

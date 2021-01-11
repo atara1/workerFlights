@@ -6,4 +6,3 @@ export const SelectedWorker = createAction(
     '[WorkerInfo] selectedWorker',
     props<WorkerInfo>()
 );
-

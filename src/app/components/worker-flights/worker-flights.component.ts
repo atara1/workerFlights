@@ -5,6 +5,7 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { skip } from 'rxjs/operators';
+import * as flights from '../../store/actions/flights.action';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { skip } from 'rxjs/operators';
 export class WorkerFlightsComponent implements OnInit, OnDestroy {
   usersSelectedWorker$: Observable<WorkerInfo>;
   private subscriptions: Subscription[] = [];
+  flightsSelected$: Observable<WorkerInformation>;
   //workerColumns: string[] = ['Flight Number', 'Origin', 'Origin Date', 'Destination', 'Destination Date'];
   workerColumns = [
     {headerName: 'Flight Number', field: 'num' },
@@ -26,6 +28,7 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   workerData: WorkerInformation[] = [];
   constructor(private store: Store<AppState>, private workersService: WorkersService) {
     this.usersSelectedWorker$ = store.pipe(select('usersSelectedWorker'));
+    this.flightsSelected$ = store.pipe(select('flights'));
   }
 
   ngOnInit(): void {
@@ -37,6 +40,9 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   private getWorkerData(numberId: number): void {
     this.subscriptions.push( this.workersService.getWorkerInformation(numberId).subscribe(data => {
       this.workerData = data;
+      //to do -from effect
+      this.store.dispatch(flights.UpdateFlightInformation(this.workerData[0])); // default will be the first row of the table
+
     }));
   }
 
