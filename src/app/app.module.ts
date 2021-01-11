@@ -15,6 +15,7 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { GenericGridComponent } from './components/generic-grid/generic-grid.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { FlightInformationComponent } from './components/flight-information/flight-information.component';
+import { ConvertMinutesToTimePipe } from './pipes/convert-minutes-to-time.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FlightInformationComponent } from './components/flight-information/flig
     WorkerFlightsComponent,
     TableComponent,
     GenericGridComponent,
-    FlightInformationComponent
+    FlightInformationComponent,
+    ConvertMinutesToTimePipe
   ],
   imports: [
     BrowserModule,

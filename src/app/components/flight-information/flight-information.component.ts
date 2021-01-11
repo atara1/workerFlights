@@ -3,7 +3,7 @@ import { AppState } from './../../store/AppState';
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-
+import { ConvertMinutesToTimePipe } from '../../pipes/convert-minutes-to-time.pipe';
 @Component({
   selector: 'app-flight-information',
   templateUrl: './flight-information.component.html',
