@@ -1,6 +1,7 @@
 <div class="list-group scroll">
-    <li class="list-group-item  list-group-item-action disabled header-list text-light bg-primary
-    "><h3>Workers</h3></li>
+    <li class="list-group-item  list-group-item-action disabled header-list text-light bg-primary">
+        <h3>Workers</h3>
+    </li>
     <div *ngFor=" let worker of workerList">
         <a href="#" class="list-group-item list-group-item-action" (click)="selectedWorker(worker)">
             {{worker.name}}
