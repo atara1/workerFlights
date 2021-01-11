@@ -10,7 +10,6 @@ import { usersSelectedWorkerReducer } from './store/reducers/usersSelectedWorker
 import { flightReducer } from './store/reducers/flight.reducer';
 
 import { WorkerFlightsComponent } from './components/worker-flights/worker-flights.component';
-import { TableComponent } from './components/table/table.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { GenericGridComponent } from './components/generic-grid/generic-grid.component';
 import { AgGridModule } from 'ag-grid-angular';
@@ -23,7 +22,6 @@ import { ConvertMinutesToTimePipe } from './pipes/convert-minutes-to-time.pipe';
     WorkersListComponent,
     FlightsDataComponent,
     WorkerFlightsComponent,
-    TableComponent,
     GenericGridComponent,
     FlightInformationComponent,
     ConvertMinutesToTimePipe
