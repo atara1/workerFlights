@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { AppState } from './../../store/AppState';
-import { FlightInformation, WorkerInformation } from './../../../assets/workersTypes';
+import { WorkerInformation } from './../../../assets/workersTypes';
 import { Component, Input, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as flights from '../../store/actions/flights.action';

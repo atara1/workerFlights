@@ -1,4 +1,4 @@
-import { FlightInformation, WorkerInformation } from './../../../assets/workersTypes';
+import { WorkerInformation } from './../../../assets/workersTypes';
 import * as flights from '../actions/flights.action';
 import { createReducer, on, Action } from '@ngrx/store';
 

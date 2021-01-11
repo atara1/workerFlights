@@ -21,13 +21,15 @@ export class WorkersListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-   this.subscriptions = this.workersService.getWorkersList().subscribe(list => {
+   this.subscriptions = this.workersService.getWorkersList()
+   .subscribe(list => {
       this.workerList = list;
+    }, (error) => {
+      console.log('error occure: ' , error);
     });
   }
 
   selectedWorker(workerSelected: WorkerInfo): void {
-   // console.log(workerSelected);
     if (!!workerSelected) {
       this.store.dispatch(usersSelectedWorker.SelectedWorker(workerSelected));
     }

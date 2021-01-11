@@ -6,5 +6,4 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./flights-data.component.scss']
 })
 export class FlightsDataComponent {
-
 }
