@@ -1,6 +1,5 @@
-<div *ngIf="workerData.length !==0">
+<div class="table-container" *ngIf="workerData.length !==0">
     <app-generic-grid [workerData]="workerData" [workerColumns]="workerColumns">         
     </app-generic-grid>
-
     <app-flight-information></app-flight-information>
 </div>
