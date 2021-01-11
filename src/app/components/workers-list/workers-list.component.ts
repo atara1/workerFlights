@@ -12,7 +12,6 @@ import * as usersSelectedWorker from '../../store/actions/usersSelectedWorker.ac
   styleUrls: ['./workers-list.component.scss']
 })
 export class WorkersListComponent implements OnInit, OnDestroy {
-
   workerList: WorkerInfo[];
   usersSelectedWorker$: Observable<WorkerInfo>;
   private subscriptions: Subscription;
@@ -21,12 +20,12 @@ export class WorkersListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-   this.subscriptions = this.workersService.getWorkersList()
-   .subscribe(list => {
-      this.workerList = list;
-    }, (error) => {
-      console.log('error occure: ' , error);
-    });
+    this.subscriptions = this.workersService.getWorkersList()
+      .subscribe(list => {
+        this.workerList = list;
+      }, (error) => {
+        console.log('error occure: ', error);
+      });
   }
 
   selectedWorker(workerSelected: WorkerInfo): void {

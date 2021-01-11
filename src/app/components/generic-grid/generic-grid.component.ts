@@ -10,11 +10,11 @@ import * as flights from '../../store/actions/flights.action';
   templateUrl: './generic-grid.component.html',
   styleUrls: ['./generic-grid.component.scss']
 })
-export class GenericGridComponent implements OnInit {
+export class GenericGridComponent {
   @Input() workerColumns: string[];
   @Input() workerData: WorkerInformation[];
   flightsSelected$: Observable<WorkerInformation>;
-   gridOptions = {
+  gridOptions = {
     defaultColDef: {
       editable: true,
       enableRowGroup: true,
@@ -39,14 +39,9 @@ export class GenericGridComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     this.flightsSelected$ = store.pipe(select('flights'));
-
-   }
-
-  ngOnInit(): void {
   }
 
   public getSelectedRowData(selectedFlight: WorkerInformation): void {
-    console.log(selectedFlight);
     if (!!selectedFlight) {
       this.store.dispatch(flights.UpdateFlightInformation(selectedFlight));
     }

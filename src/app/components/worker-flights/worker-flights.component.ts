@@ -18,11 +18,11 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   flightsSelected$: Observable<WorkerInformation>;
   workerData: WorkerInformation[] = [];
   workerColumns: WorkerColumns[] = [
-    {headerName: 'Flight Number', field: 'num' },
-    {headerName: 'Origin', field: 'from' },
-    {headerName: 'Origin Date', field: 'from_date' },
-    {headerName: 'Destination', field: 'to'},
-    {headerName: 'Destination Date', field: 'to_date'}
+    { headerName: 'Flight Number', field: 'num' },
+    { headerName: 'Origin', field: 'from' },
+    { headerName: 'Origin Date', field: 'from_date' },
+    { headerName: 'Destination', field: 'to' },
+    { headerName: 'Destination Date', field: 'to_date' }
   ];
   constructor(private store: Store<AppState>, private workersService: WorkersService) {
     this.usersSelectedWorker$ = store.pipe(select('usersSelectedWorker'));
@@ -36,16 +36,14 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   }
 
   private getWorkerData(numberId: number): void {
-    this.subscriptions.push( this.workersService.getWorkerInformation(numberId)
-    .subscribe(data => {
-      this.workerData = data;
-      this.store.dispatch(flights.UpdateFlightInformation(this.workerData[0])); // default will be the first row of the table
-
-    }, (error) => {
-        console.log('error occure: ' , error);
+    this.subscriptions.push(this.workersService.getWorkerInformation(numberId)
+      .subscribe(data => {
+        this.workerData = data;
+        this.store.dispatch(flights.UpdateFlightInformation(this.workerData[0])); // default will be the first row of the table
+      }, (error) => {
+        console.log('error occure: ', error);
       }));
   }
-
 
   @HostListener('window:unload', ['$event'])
   ngOnDestroy(): void {
