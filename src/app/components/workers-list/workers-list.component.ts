@@ -2,8 +2,8 @@ import { WorkersService } from './../../services/workers.service';
 import { WorkerInfo } from './../../../assets/workersTypes';
 import { AppState } from './../../store/AppState';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import * as usersSelectedWorker from '../../store/actions/usersSelectedWorker.action';
 
 @Component({

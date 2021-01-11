@@ -1,6 +1,6 @@
 import { WorkersService } from './../../services/workers.service';
 import { AppState } from './../../store/AppState';
-import { WorkerInfo, WorkerInformation, WorkerColumns } from './../../../assets/workersTypes';
+import { WorkerInfo, WorkerInformation, WorkerColumns, FlightInformation } from './../../../assets/workersTypes';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
@@ -37,7 +37,14 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.workersService.getWorkerInformation(numberId)
       .subscribe(workerFlightsInformation => {
         this.workerFlightsData = workerFlightsInformation;
-        this.store.dispatch(flights.UpdateFlightInformation(this.workerFlightsData[0])); // default will be the first row of the table
+        const defaultWorkerFlightData = this.workerFlightsData[0]; // default will be the first row of the table
+        const flightInformation: FlightInformation = {
+          duration: defaultWorkerFlightData.duration,
+          num: defaultWorkerFlightData.num,
+          from_gate: defaultWorkerFlightData.from_gate,
+          to_gate: defaultWorkerFlightData.to_gate
+        };
+        this.store.dispatch(flights.UpdateFlightInformation(flightInformation)); // default will be the first row of the table
       }, (error) => {
         console.log('error occure: ', error);
       }));

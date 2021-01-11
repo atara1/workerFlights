@@ -1,4 +1,4 @@
-import { FlightInformation, WorkerInformation } from './../../../assets/workersTypes';
+import { FlightInformation } from './../../../assets/workersTypes';
 import { AppState } from './../../store/AppState';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
@@ -10,7 +10,7 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./flight-information.component.scss']
 })
 export class FlightInformationComponent implements OnInit, OnDestroy {
-  public flightsSelected$: Observable<WorkerInformation>;
+  public flightsSelected$: Observable<FlightInformation>;
   public flightInformation: FlightInformation;
   private subscriptions: Subscription;
 
@@ -20,12 +20,7 @@ export class FlightInformationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions = this.flightsSelected$.subscribe(data => {
-      this.flightInformation = {
-        duration: data.duration,
-        num: data.num,
-        from_gate: data.from_gate,
-        to_gate: data.to_gate
-      };
+      this.flightInformation = data;
     });
   }
 

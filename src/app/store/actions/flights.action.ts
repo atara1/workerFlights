@@ -1,8 +1,8 @@
-import { WorkerInformation } from './../../../assets/workersTypes';
+import { FlightInformation } from './../../../assets/workersTypes';
 import { createAction, props } from '@ngrx/store';
 
 
 export const UpdateFlightInformation = createAction(
-    '[WorkerInformation] UpdateFlightInformation',
-    props<WorkerInformation>()
+    '[FlightInformation] UpdateFlightInformation',
+    props<FlightInformation>()
 );

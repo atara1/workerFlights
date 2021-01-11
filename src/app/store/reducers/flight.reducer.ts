@@ -1,18 +1,18 @@
-import { WorkerInformation } from './../../../assets/workersTypes';
+import { FlightInformation } from './../../../assets/workersTypes';
 import * as flights from '../actions/flights.action';
 import { createReducer, on, Action } from '@ngrx/store';
 
 
-const defaultState: WorkerInformation = null;
+const defaultState: FlightInformation = null;
 
 const reducer = createReducer(
     defaultState,
-    on(flights.UpdateFlightInformation, (state: WorkerInformation, newData: WorkerInformation) => {
+    on(flights.UpdateFlightInformation, (state: FlightInformation, newData: FlightInformation) => {
         return newData;
     })
 );
 
-export function flightReducer(state: WorkerInformation | undefined, action: Action): WorkerInformation {
+export function flightReducer(state: FlightInformation | undefined, action: Action): FlightInformation {
     return reducer(state, action);
 }
 

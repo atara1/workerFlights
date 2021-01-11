@@ -1,6 +1,6 @@
-import { WorkerInfo, WorkerInformation } from './../../assets/workersTypes';
+import { WorkerInfo, FlightInformation } from './../../assets/workersTypes';
 
 export class AppState {
     usersSelectedWorker: WorkerInfo;
-    flights: WorkerInformation;
+    flights: FlightInformation;
   }

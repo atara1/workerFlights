@@ -1,8 +1,7 @@
-import { Observable } from 'rxjs';
 import { AppState } from './../../store/AppState';
-import { WorkerInformation } from './../../../assets/workersTypes';
-import { Component, Input, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { WorkerInformation, FlightInformation } from './../../../assets/workersTypes';
+import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 import * as flights from '../../store/actions/flights.action';
 
 @Component({
@@ -41,7 +40,13 @@ export class GenericGridComponent {
 
   public getSelectedRowData(selectedFlight: WorkerInformation): void {
     if (!!selectedFlight) {
-      this.store.dispatch(flights.UpdateFlightInformation(selectedFlight));
+      const flightInformation: FlightInformation = {
+        duration: selectedFlight.duration,
+        num: selectedFlight.num,
+        from_gate: selectedFlight.from_gate,
+        to_gate: selectedFlight.to_gate
+      };
+      this.store.dispatch(flights.UpdateFlightInformation(flightInformation));
     }
   }
 
