@@ -37,8 +37,8 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
 
   private getWorkerData(numberId: number): void {
     this.subscriptions.push(this.workersService.getWorkerInformation(numberId)
-      .subscribe(data => {
-        this.workerFlightsData = data;
+      .subscribe(workerFlightsInformation => {
+        this.workerFlightsData = workerFlightsInformation;
         this.store.dispatch(flights.UpdateFlightInformation(this.workerFlightsData[0])); // default will be the first row of the table
       }, (error) => {
         console.log('error occure: ', error);
