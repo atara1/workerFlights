@@ -1,0 +1,10 @@
+<ag-grid-angular 
+	
+	class="grid-size ag-theme-balham"
+	[rowData]="workerData" 
+    [columnDefs]="workerColumns"
+    [gridOptions]="gridOptions"
+    (rowClicked)=getSelectedRowData($event.data)
+
+    >
+</ag-grid-angular>

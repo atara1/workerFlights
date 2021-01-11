@@ -15,14 +15,20 @@ import { skip } from 'rxjs/operators';
 export class WorkerFlightsComponent implements OnInit, OnDestroy {
   usersSelectedWorker$: Observable<WorkerInfo>;
   private subscriptions: Subscription[] = [];
-  workerColumns: string[] = ['Flight Number', 'Origin', 'Origin Date', 'Destination', 'Destination Date'];
+  //workerColumns: string[] = ['Flight Number', 'Origin', 'Origin Date', 'Destination', 'Destination Date'];
+  workerColumns = [
+    {headerName: 'Flight Number', field: 'num' },
+    {headerName: 'Origin', field: 'from' },
+    {headerName: 'Origin Date', field: 'from_date' },
+    {headerName: 'Destination', field: 'to'},
+    {headerName: 'Destination Date', field: 'to_date'}
+  ];
   workerData: WorkerInformation[] = [];
   constructor(private store: Store<AppState>, private workersService: WorkersService) {
     this.usersSelectedWorker$ = store.pipe(select('usersSelectedWorker'));
   }
 
   ngOnInit(): void {
-
     this.subscriptions.push(this.usersSelectedWorker$.pipe(skip(1)).subscribe(data => {
       this.getWorkerData(data.id);
     }));

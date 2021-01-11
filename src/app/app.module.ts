@@ -10,6 +10,8 @@ import { usersSelectedWorkerReducer } from './store/reducers/usersSelectedWorker
 import { WorkerFlightsComponent } from './components/worker-flights/worker-flights.component';
 import { TableComponent } from './components/table/table.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import { GenericGridComponent } from './components/generic-grid/generic-grid.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
     WorkersListComponent,
     FlightsDataComponent,
     WorkerFlightsComponent,
-    TableComponent
+    TableComponent,
+    GenericGridComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
     StoreModule.forRoot({
       usersSelectedWorker: usersSelectedWorkerReducer,
     }),
-    NgbPaginationModule
+    NgbPaginationModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]
