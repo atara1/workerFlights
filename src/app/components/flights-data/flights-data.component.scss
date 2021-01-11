@@ -1,4 +1,6 @@
+$full-screen: 100%;
+
 .container-flights{
    display: flex;
-   height: 100%;
+   height: $full-screen;
 }

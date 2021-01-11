@@ -4,15 +4,15 @@ export type WorkerInfo = {
 };
 
 export interface WorkerInformation {
-num: string;
-from: string;
-to: string;
-from_date: string;
-to_date: string;
-plane: string;
-duration: number;
-from_gate: number;
-to_gate: number;
+    num: string;
+    from: string;
+    to: string;
+    from_date: string;
+    to_date: string;
+    plane: string;
+    duration: number;
+    from_gate: number;
+    to_gate: number;
 }
 
 export interface FlightInformation {
@@ -24,5 +24,5 @@ export interface FlightInformation {
 
 export interface WorkerColumns {
     headerName: string;
-   field: string;
+    field: string;
 }
