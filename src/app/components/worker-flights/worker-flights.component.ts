@@ -33,8 +33,8 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
     }));
   }
 
-  private getWorkerData(numberId: number): void {
-    this.subscriptions.push(this.workersService.getWorkerInformation(numberId)
+  private getWorkerData(workerId: number): void {
+    this.subscriptions.push(this.workersService.getWorkerInformation(workerId)
       .subscribe(workerFlightsInformation => {
         this.workerFlightsData = workerFlightsInformation;
         const defaultWorkerFlightData = this.workerFlightsData[0]; // default will be the first row of the table
