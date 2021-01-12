@@ -36,7 +36,7 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
 
   private getWorkerData(workerId: number): void {
     this.getWorkerInformation(workerId);
-    this.refreshFlightInformationDate(workerId);
+    this.refreshFlightInformationData(workerId);
   }
 
   private getWorkerInformation(workerId: number): void {
@@ -56,7 +56,7 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
       }));
   }
 
-  private refreshFlightInformationDate(workerId: number): void {
+  private refreshFlightInformationData(workerId: number): void {
     interval(60000)
       .pipe(takeWhile(() => true))
       .subscribe(() => {

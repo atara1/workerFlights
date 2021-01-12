@@ -1,8 +1,9 @@
 .grid-size{
     width: 50rem; 
-    height:26rem;
+    height: 26rem;
 }
 
 .ag-theme-balham .ag-row-selected {
     background-color: var(--ag-selected-row-background-color, #007bff);
+    color: #FFFFFF;
 }
