@@ -4,8 +4,9 @@ import { WorkerInfo, WorkerInformation, WorkerColumns, FlightInformation } from 
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import { skip } from 'rxjs/operators';
+import { skip, takeWhile } from 'rxjs/operators';
 import * as flights from '../../store/actions/flights.action';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-worker-flights',
@@ -34,6 +35,11 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   }
 
   private getWorkerData(workerId: number): void {
+    this.getWorkerInformation(workerId);
+    this.refreshFlightInformationDate(workerId);
+  }
+
+  private getWorkerInformation(workerId: number): void {
     this.subscriptions.push(this.workersService.getWorkerInformation(workerId)
       .subscribe(workerFlightsInformation => {
         this.workerFlightsData = workerFlightsInformation;
@@ -48,6 +54,15 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
       }, (error) => {
         console.log('error occure: ', error);
       }));
+  }
+
+  private refreshFlightInformationDate(workerId: number): void {
+    interval(60000)
+      .pipe(takeWhile(() => true))
+      .subscribe(() => {
+        console.log('Refresh - the flight information');
+        this.getWorkerInformation(workerId);
+      });
   }
 
   @HostListener('window:unload', ['$event'])

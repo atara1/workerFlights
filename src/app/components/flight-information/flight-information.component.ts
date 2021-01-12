@@ -19,6 +19,10 @@ export class FlightInformationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getFlightInformationFromStore();
+  }
+
+  private getFlightInformationFromStore(): void {
     this.subscriptions = this.flightsSelected$.subscribe(data => {
       this.flightInformation = data;
     });
