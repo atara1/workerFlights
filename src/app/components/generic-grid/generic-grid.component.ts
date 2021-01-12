@@ -1,13 +1,14 @@
 import { AppState } from './../../store/AppState';
 import { WorkerInformation, FlightInformation } from './../../../assets/workersTypes';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as flights from '../../store/actions/flights.action';
 
 @Component({
   selector: 'app-generic-grid',
   templateUrl: './generic-grid.component.html',
-  styleUrls: ['./generic-grid.component.scss']
+  styleUrls: ['./generic-grid.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GenericGridComponent {
   @Input() workerColumns: string[];
@@ -24,12 +25,7 @@ export class GenericGridComponent {
       flex: 1,
       minWidth: 100,
     },
-    suppressRowClickSelection: true,
-    groupSelectsChildren: true,
-    debug: true,
-    rowSelection: 'multiple',
-    rowGroupPanelShow: 'always',
-    pivotPanelShow: 'always',
+    rowSelection: 'single',
     enableRangeSelection: true,
     paginationAutoPageSize: true,
     pagination: true,
