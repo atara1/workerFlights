@@ -14,6 +14,7 @@ import * as usersSelectedWorker from '../../store/actions/usersSelectedWorker.ac
 export class WorkersListComponent implements OnInit, OnDestroy {
   public workerList: WorkerInfo[];
   private subscriptions: Subscription;
+  private selectedIndex: number;
   constructor(private workersService: WorkersService, private store: Store<AppState>) {
   }
 
@@ -26,7 +27,11 @@ export class WorkersListComponent implements OnInit, OnDestroy {
       });
   }
 
-  selectedWorker(workerSelected: WorkerInfo): void {
+  private setIndexSelectedWorker(index: number): void {
+    this.selectedIndex = index;
+  }
+
+  public selectedWorker(workerSelected: WorkerInfo): void {
     if (!!workerSelected) {
       this.store.dispatch(usersSelectedWorker.SelectedWorker(workerSelected));
     }
