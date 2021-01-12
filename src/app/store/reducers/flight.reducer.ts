@@ -2,7 +2,6 @@ import { FlightInformation } from './../../../assets/workersTypes';
 import * as flights from '../actions/flights.action';
 import { createReducer, on, Action } from '@ngrx/store';
 
-
 const defaultState: FlightInformation = null;
 
 const reducer = createReducer(

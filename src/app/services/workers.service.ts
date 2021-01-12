@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { WorkerInfo, WorkerInformation } from './../../assets/workersTypes';
 
-
 const WORKER_INFORMATION_URL = 'https://interview-mock.herokuapp.com/api/workers/';
 const WORKER_LIST_URL = 'https://interview-mock.herokuapp.com/api/workers/';
 
@@ -18,7 +17,6 @@ export class WorkersService {
     return this.httpClient.get(WORKER_LIST_URL)
       .pipe(map((res: WorkerInfo[]) => res));
   }
-
 
   public getWorkerInformation(workerId: number): Observable<WorkerInformation[]> {
     return this.httpClient.get(`${WORKER_INFORMATION_URL}${workerId}`)

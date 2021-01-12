@@ -2,7 +2,6 @@ import { WorkerInfo } from './../../../assets/workersTypes';
 import * as usersSelectedWorker from '../actions/usersSelectedWorker.action';
 import { createReducer, on, Action } from '@ngrx/store';
 
-
 const defaultState: WorkerInfo = null;
 
 const reducer = createReducer(
@@ -15,4 +14,3 @@ const reducer = createReducer(
 export function usersSelectedWorkerReducer(state: WorkerInfo | undefined, action: Action): WorkerInfo {
     return reducer(state, action);
 }
-
