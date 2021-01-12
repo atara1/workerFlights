@@ -3,3 +3,6 @@
     </app-generic-grid>
     <app-flight-information></app-flight-information>
 </div>
+<div *ngIf="notFoundFlights" class="text-danger text-center m-5">
+    <h1>No flights were found to {{workerSelectedName}} </h1>
+</div>

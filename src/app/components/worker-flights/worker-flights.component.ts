@@ -24,6 +24,8 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
     { headerName: 'Destination', field: 'to' },
     { headerName: 'Destination Date', field: 'to_date' }
   ];
+  public notFoundFlights = false;
+  public workerSelectedName = '';
   constructor(private store: Store<AppState>, private workersService: WorkersService) {
     this.usersSelectedWorker$ = store.pipe(select('usersSelectedWorker'));
   }
@@ -31,6 +33,7 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.push(this.usersSelectedWorker$.pipe(skip(1)).subscribe(data => {
       this.getWorkerData(data.id);
+      this.workerSelectedName = data.name;
     }));
   }
 
@@ -44,13 +47,19 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
       .subscribe(workerFlightsInformation => {
         this.workerFlightsData = workerFlightsInformation;
         const defaultWorkerFlightData = this.workerFlightsData[0]; // default will be the first row of the table
-        const flightInformation: FlightInformation = {
-          duration: defaultWorkerFlightData.duration,
-          num: defaultWorkerFlightData.num,
-          from_gate: defaultWorkerFlightData.from_gate,
-          to_gate: defaultWorkerFlightData.to_gate
-        };
-        this.store.dispatch(flights.UpdateFlightInformation(flightInformation)); // default will be the first row of the table
+        if (!!defaultWorkerFlightData) {
+          this.notFoundFlights = false;
+          const flightInformation: FlightInformation = {
+            duration: defaultWorkerFlightData.duration,
+            num: defaultWorkerFlightData.num,
+            from_gate: defaultWorkerFlightData.from_gate,
+            to_gate: defaultWorkerFlightData.to_gate
+          };
+          this.store.dispatch(flights.UpdateFlightInformation(flightInformation)); // default will be the first row of the table
+        }
+        else {
+          this.notFoundFlights = true;
+        }
       }, (error) => {
         console.log('error occure: ', error);
       }));
