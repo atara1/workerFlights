@@ -26,6 +26,7 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   ];
   public notFoundFlights = false;
   public workerSelectedName = '';
+  private subscriptionsInterval = new Subscription();
   constructor(private store: Store<AppState>, private workersService: WorkersService) {
     this.usersSelectedWorker$ = store.pipe(select('usersSelectedWorker'));
   }
@@ -38,6 +39,11 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   }
 
   private getWorkerData(workerId: number): void {
+    if (this.subscriptionsInterval) {
+      // unsubscribe the first request when we do refresh every 1 minutes
+      // and change the worker selection in the list
+      this.subscriptionsInterval.unsubscribe();
+    }
     this.getWorkerInformation(workerId);
     this.refreshFlightInformationData(workerId);
   }
@@ -66,10 +72,10 @@ export class WorkerFlightsComponent implements OnInit, OnDestroy {
   }
 
   private refreshFlightInformationData(workerId: number): void {
-    interval(60000)
+    this.subscriptionsInterval = interval(60000)
       .pipe(takeWhile(() => true))
       .subscribe(() => {
-        console.log('Refresh - the flight information');
+        console.log(`Refresh ${workerId} - the flight information`);
         this.getWorkerInformation(workerId);
       });
   }
