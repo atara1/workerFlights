@@ -13,7 +13,3 @@ bootstrap
 jquery (for bootstrap)
 ag-grid-angular and ag-grid-community
 ngrx/store
-
-I used the API from the assignment:
-https://interview-mock.herokuapp.com/api/workers/
-https://interview-mock.herokuapp.com/api/workers/:worker_id
